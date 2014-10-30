@@ -8,4 +8,3 @@ version          '0.1.0'
 
 depends 'mysql-multi', '~> 1.4.1'
 depends 'mysql',       '~> 5.6.0'
-depends 'cespi_application_albergue_unlp', '~> 0.1.0'
