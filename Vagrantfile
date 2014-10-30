@@ -30,7 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       }
       chef.run_list = [
         "recipe[apt::default]",
-        "recipe[cespi_mysql::master]"
+        "recipe[cespi_mysql::master]",
+        "recipe[cespi_application_albergue_unlp::database_from_databag]"
       ]
     end
   end
