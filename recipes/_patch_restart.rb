@@ -1,5 +1,4 @@
 service 'mysql' do
-  provider Chef::Provider::Service::Upstart
   supports :restart => true
 end
 

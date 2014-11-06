@@ -8,7 +8,5 @@ data = data[node.chef_environment]
 
 node.set['mysql']['server_root_password']       = data['server_root_password'] if data['server_root_password']
 node.set['mysql']['server_debian_password']     = data['server_debian_password'] if data['server_debian_password']
-node.set['mysql-multi']['master']               = data['master'] if data['master']
-node.set['mysql-multi']['slaves']               = data['slaves'] if data['slaves']
 node.set['mysql-multi']['server_repl_password'] = data['server_repl_password'] if data['server_repl_password']
 node.set['mysql-multi']['templates']['my.cnf']['cookbook'] = 'cespi_mysql'

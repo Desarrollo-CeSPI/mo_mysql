@@ -15,10 +15,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define 'mysql-master', primary: true do |app|
     app.vm.hostname = "mysql-master.vagrant.desarrollo.unlp.edu.ar"
     app.omnibus.chef_version = :latest
-    app.vm.box = "chef/ubuntu-14.04"
+    app.vm.box = "chef/debian-7.4"
     app.vm.network :private_network, ip: "10.100.4.2"
     app.berkshelf.enabled = true
     app.vm.provision :chef_solo do |chef|
+      chef.log_level = :debug
       chef.data_bags_path = 'sample/data_bags'
       chef.environment = 'production'
       chef.environments_path = 'sample/environments'
@@ -26,6 +27,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         cespi_mysql: {
           bind_ip: "10.100.4.2",
           cluster_name: 'cluster_vagrant'
+        },
+        "mysql-multi" => {
+          slaves: ['10.100.4.3']
         }
       }
       chef.run_list = [
@@ -38,7 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define 'mysql-slave' do |app|
     app.vm.hostname = "mysql-slave.vagrant.desarrollo.unlp.edu.ar"
     app.omnibus.chef_version = :latest
-    app.vm.box = "chef/ubuntu-14.04"
+    app.vm.box = "chef/debian-7.4"
     app.vm.network :private_network, ip: "10.100.4.3"
     app.berkshelf.enabled = true
     app.vm.provision :chef_solo do |chef|
@@ -49,6 +53,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         cespi_mysql: {
           bind_ip: "10.100.4.3",
           cluster_name: 'cluster_vagrant'
+        },
+        "mysql-multi" => {
+          master: '10.100.4.2'
         }
       }
       chef.run_list = [
