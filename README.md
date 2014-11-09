@@ -1,4 +1,4 @@
-# cespi_mysql-cookbook
+# mo_mysql-cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -16,7 +16,7 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['cespi_mysql']['bacon']</tt></td>
+    <td><tt>['mo_mysql']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -25,14 +25,14 @@ TODO: List your supported platforms.
 
 ## Usage
 
-### cespi_mysql::default
+### mo_mysql::default
 
-Include `cespi_mysql` in your node's `run_list`:
+Include `mo_mysql` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[cespi_mysql::default]"
+    "recipe[mo_mysql::default]"
   ]
 }
 ```

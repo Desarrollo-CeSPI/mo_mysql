@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.environment = 'production'
       chef.environments_path = 'sample/environments'
       chef.json = {
-        cespi_mysql: {
+        mo_mysql: {
           bind_ip: "10.100.4.2",
           cluster_name: 'cluster_vagrant'
         },
@@ -34,7 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       }
       chef.run_list = [
         "recipe[apt::default]",
-        "recipe[cespi_mysql::master]",
+        "recipe[mo_mysql::master]",
         "recipe[role_db_cluster::cluster_01]"
       ]
     end
@@ -51,7 +51,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.environment = 'production'
       chef.environments_path = 'sample/environments'
       chef.json = {
-        cespi_mysql: {
+        mo_mysql: {
           bind_ip: "10.100.4.3",
           cluster_name: 'cluster_vagrant'
         },
@@ -61,7 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       }
       chef.run_list = [
         "recipe[apt::default]",
-        "recipe[cespi_mysql::slave]"
+        "recipe[mo_mysql::slave]"
       ]
     end
   end

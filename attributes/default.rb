@@ -1,5 +1,5 @@
-default['cespi_mysql']['databag'] = 'mysql_clusters'
-default['cespi_mysql']['cluster_name'] = 'cluster_name'
-default['cespi_mysql']['master'] = 'localhost'
-default['cespi_mysql']['slaves'] = []
-default['cespi_mysql']['server_repl_password'] = 'repl_cespi_mysql_pass'
+default['mo_mysql']['databag'] = 'mysql_clusters'
+default['mo_mysql']['cluster_name'] = 'cluster_name'
+default['mo_mysql']['master'] = 'localhost'
+default['mo_mysql']['slaves'] = []
+default['mo_mysql']['server_repl_password'] = 'repl_mo_mysql_pass'
