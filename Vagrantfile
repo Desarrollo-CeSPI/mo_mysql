@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define 'mysql-master', primary: true do |app|
     app.vm.hostname = "mysql-master.vagrant.desarrollo.unlp.edu.ar"
     app.omnibus.chef_version = :latest
-    app.vm.box = "chef/debian-7.4"
+    app.vm.box = "chef/debian-7.7"
     app.vm.network :private_network, ip: "10.100.4.2"
     app.berkshelf.enabled = true
     app.vm.provision :chef_solo do |chef|
@@ -43,7 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define 'mysql-slave' do |app|
     app.vm.hostname = "mysql-slave.vagrant.desarrollo.unlp.edu.ar"
     app.omnibus.chef_version = :latest
-    app.vm.box = "chef/debian-7.4"
+    app.vm.box = "chef/debian-7.7"
     app.vm.network :private_network, ip: "10.100.4.3"
     app.berkshelf.enabled = true
     app.vm.provision :chef_solo do |chef|
