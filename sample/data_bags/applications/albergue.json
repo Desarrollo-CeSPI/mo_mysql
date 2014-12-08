@@ -1,0 +1,20 @@
+{
+  "id": "albergue",
+  "production": {
+    "database": {
+      "password": "albergue",
+      "host": "albergue.vagrant.desarrollo.unlp.edu.ar"
+    },
+    "application_servers": [
+      "albergue.vagrant.desarrollo.unlp.edu.ar"
+      ],
+    "applications": {
+      "frontend": {
+        "server_name": "albergue.vagrant.desarrollo.unlp.edu.ar"
+      },
+      "backend": {
+        "server_name": "admin-albergue.vagrant.desarrollo.unlp.edu.ar"
+      }
+    }
+  }
+}
