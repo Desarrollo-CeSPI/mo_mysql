@@ -33,8 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       }
       chef.run_list = [
         "recipe[apt::default]",
-        "recipe[mo_mysql::master]",
-        "recipe[role_db_cluster::cluster_01]"
+        "recipe[mo_mysql::master]"
       ]
     end
   end

@@ -1,0 +1,26 @@
+DEPENDENCIES
+  mo_mysql
+    path: .
+    metadata: true
+  mysql-multi
+    git: https://github.com/rackspace-cookbooks/mysql-multi.git
+    revision: c46362118f318fb8c35ee057be59268f13f7f391
+
+GRAPH
+  apt (2.6.1)
+  chef-sugar (2.5.0)
+  mo_mysql (0.1.5)
+    mysql (~> 5.6.0)
+    mysql-multi (~> 1.4.1)
+  mysql (5.6.1)
+    yum-mysql-community (>= 0.0.0)
+  mysql-multi (1.4.3)
+    apt (>= 0.0.0)
+    chef-sugar (>= 0.0.0)
+    mysql (~> 5.0)
+    openssl (>= 0.0.0)
+  openssl (2.0.2)
+    chef-sugar (>= 0.0.0)
+  yum (3.5.2)
+  yum-mysql-community (0.1.12)
+    yum (>= 3.0)
