@@ -3,6 +3,14 @@
 Instala un servidor de Mysql master, slave o standalone. Cuando se utiliza
 master/slave se llamará cluster al grupo de un master con N slaves
 
+## IMPORTANTE
+
+Cuando se configura mysql con esta receta, las conexiones con sockets dejan de
+funcionar si no se configura de forma adecuada my.cnf. Sin embargo, librerías
+como por ejemplo la gema mysql2, si no se especifica el socket, tratará de
+buscar el por defecto del sistema y no lo encontrará. Por tanto, en vez de
+conectarse con localhost, usar 127.0.0.1 que fuerza el uso de TCP
+
 ## Platformas soportadas
 
 Todas? Nos manejamos con las recetas de:
@@ -25,7 +33,6 @@ default['mo_mysql']['server_repl_password'] = 'repl_mo_mysql_pass'
 default['mo_mysql']['install_recipe'] = 'mo_mysql::mysql_server'
 default['mo_mysql']['tmpdir']['dir'] = '/var/mysqltmp'
 default['mo_mysql']['tmpdir']['size'] = '1G'
-default['mo_mysql']['socket_file'] = '/var/run/mysqld/mysqld.sock'
 default['mysql_tuning']['tuning.cnf']['mysqld']['innodb_log_files_in_group'] = 2
 default['mysql']['server_root_password'] = 'change-me'
 ```
@@ -63,8 +70,6 @@ servidor de chef (no funcionará con chef-solo)
 * **server_repl_password**: password de sincronización
 * **tmpdir dir**: directorio usado como tmpfs para mysql
 * **tmpdir size**: cantidad de memoria usada para tmpfs
-* **socket_file**: nombre del socket con el que correrá mysql. Se setea en el
- valor por defecto en ubuntu
 * **mysql_tuning tuning.cnf**: permite sobreescribir cualquier atributo de tuning
  utilizando las secciones como claves y alguna opción válida de my.cnf
 * **mysql server_root_password**: password de root de mysql. Utilizado por

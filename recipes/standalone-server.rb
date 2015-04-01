@@ -1,6 +1,5 @@
-mysql_service 'default' do
+mysql_service 'standalone' do
   initial_root_password node['mysql']['server_root_password']
-  socket node['mo_mysql']['socket_file']
   action [:create, :start]
 end
 

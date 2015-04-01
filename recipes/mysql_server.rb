@@ -1,7 +1,6 @@
 mysql_service node['mysql-multi']['service_name'] do
   bind_address node['mysql-multi']['bind_address']
   port node['mysql-multi']['service_port']
-  socket node['mo_mysql']['socket_file']
   initial_root_password node['mysql-multi']['server_root_password']
   action [:create, :start]
 end
