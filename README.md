@@ -52,22 +52,22 @@ formato siguiente (asumiendo que el cluster es cluster-01:
 Considerar que si no se setea master y slaves, se utilizará la búsqueda sobre el
 servidor de chef (no funcionará con chef-solo)
 
-* *databag*: nombre del data bag de donde se obtienen los valores para configurar
+* **databag**: nombre del data bag de donde se obtienen los valores para configurar
   el cluster.
-* *cluster_name*: nombre del item de data bag de donde se leerán los datos
-* *master*: nombre (fqdn) o ip del servidor que será master
-* *slaves*: arreglo de nombres (fqdn) o ips de los servidores que serán slaves
-* *slave_user*: usuario utilizado para la sincronización master/slave
-* *install_recipe*: receta que instalará el servidor de mysql cuando se instale
-  el cluster. Por defecto se utiliza: *mo_mysql::mysql_server*
-* *server_repl_password*: password de sincronización
-* *tmpdir dir*: directorio usado como tmpfs para mysql
-* *tmpdir size*: cantidad de memoria usada para tmpfs
-* *socket_file*: nombre del socket con el que correrá mysql. Se setea en el
-  valor por defecto en ubuntu
-* *mysql_tuning tuning.cnf*: permite sobreescribir cualquier atributo de tuning
-  utilizando las secciones como claves y alguna opción válida de my.cnf
-* *mysql server_root_password*: password de root de mysql. Utilizado por
+* **cluster_name**: nombre del item de data bag de donde se leerán los datos
+* **master**: nombre (fqdn) o ip del servidor que será master
+* **slaves**: arreglo de nombres (fqdn) o ips de los servidores que serán slaves
+* **slave_user**: usuario utilizado para la sincronización master/slave
+* **install_recipe**: receta que instalará el servidor de mysql cuando se instale
+ el cluster. Por defecto se utiliza: **mo_mysql::mysql_server**
+* **server_repl_password**: password de sincronización
+* **tmpdir dir**: directorio usado como tmpfs para mysql
+* **tmpdir size**: cantidad de memoria usada para tmpfs
+* **socket_file**: nombre del socket con el que correrá mysql. Se setea en el
+ valor por defecto en ubuntu
+* **mysql_tuning tuning.cnf**: permite sobreescribir cualquier atributo de tuning
+ utilizando las secciones como claves y alguna opción válida de my.cnf
+* **mysql server_root_password**: password de root de mysql. Utilizado por
   compatibilidad con mysql < 6.0.0. Muchas recetas se basan en este atributo. Por 
   ello lo seteamos cuando se setea la password de root de mysql
 
@@ -98,5 +98,5 @@ para tests de recetas que requieran un server de mysql
 
 ## Autores
 
-Author:: Christian A. Rodriguez (<chrodriguez@gmail.com>)
-Author:: Leandro Di Tommaso (<leandro.ditommaso@mikroways.net>)
+* Author:: Christian A. Rodriguez (<chrodriguez@gmail.com>)
+* Author:: Leandro Di Tommaso (<leandro.ditommaso@mikroways.net>)
