@@ -86,6 +86,11 @@ Instala el slave de un cluster. Requiere de un databag para poder configurarse
 Instala un servidor de mysql básico sin tuning, tmpfs, ni binary logs. Sirve
 para tests de recetas que requieran un server de mysql
 
+## Librerías provistas
+
+La receta provee de la funcionón: `mo_mysql_data_for_cluster`  que es un wrapper
+para leer un databag según los atributos del nodo que indica el nombre del
+databag. El nombre del cluster se recibe como parámetro
 
 ## Contributing
 
