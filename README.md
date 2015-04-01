@@ -1,41 +1,91 @@
 # mo_mysql-cookbook
 
-TODO: Enter the cookbook description here.
+Instala un servidor de Mysql master, slave o standalone. Cuando se utiliza
+master/slave se llamará cluster al grupo de un master con N slaves
 
-## Supported Platforms
+## Platformas soportadas
 
-TODO: List your supported platforms.
+Todas? Nos manejamos con las recetas de:
 
-## Attributes
+  * [mysql](https://github.com/chef-cookbooks/mysql)
+  * [mysql_tuning](https://github.com/onddo/mysql_tuning-cookbook)
+  * [mysql-multi](https://github.com/rackspace-cookbooks/mysql-multi)
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['mo_mysql']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+Por lo que dependemos de esas recetas
 
-## Usage
+## Atributos
 
-### mo_mysql::default
+```
+default['mo_mysql']['databag'] = 'mysql_clusters'
+default['mo_mysql']['cluster_name'] = 'cluster_name'
+default['mo_mysql']['master'] = nil
+default['mo_mysql']['slaves'] = []
+default['mo_mysql']['slave_user'] = 'slave'
+default['mo_mysql']['server_repl_password'] = 'repl_mo_mysql_pass'
+default['mo_mysql']['install_recipe'] = 'mo_mysql::mysql_server'
+default['mo_mysql']['tmpdir']['dir'] = '/var/mysqltmp'
+default['mo_mysql']['tmpdir']['size'] = '1G'
+default['mo_mysql']['socket_file'] = '/var/run/mysqld/mysqld.sock'
+default['mysql_tuning']['tuning.cnf']['mysqld']['innodb_log_files_in_group'] = 2
+default['mysql']['server_root_password'] = 'change-me'
+```
 
-Include `mo_mysql` in your node's `run_list`:
+### Qué es cada atributo
 
-```json
+La configuracion de un cluster, se realiza a través de un data bag con el
+formato siguiente (asumiendo que el cluster es cluster-01:
+
+
+```
 {
-  "run_list": [
-    "recipe[mo_mysql::default]"
-  ]
+  "id": "cluster-01",
+  "server_root_password": "root",
+  "server_repl_password": "rootpass",
+  "master": "mysql-master.vagrant.desarrollo.unlp.edu.ar",
+  "slaves": ["mysql-slave.vagrant.desarrollo.unlp.edu.ar"],
+  "superuser": "admin",
+  "superuser_password": "superpass",
+  "superuser_from_networks": "%"
 }
 ```
+
+Considerar que si no se setea master y slaves, se utilizará la búsqueda sobre el
+servidor de chef (no funcionará con chef-solo)
+
+* *databag*: nombre del data bag de donde se obtienen los valores para configurar
+  el cluster.
+* *cluster_name*: nombre del item de data bag de donde se leerán los datos
+* *master*: nombre (fqdn) o ip del servidor que será master
+* *slaves*: arreglo de nombres (fqdn) o ips de los servidores que serán slaves
+* *slave_user*: usuario utilizado para la sincronización master/slave
+* *install_recipe*: receta que instalará el servidor de mysql cuando se instale
+  el cluster. Por defecto se utiliza: *mo_mysql::mysql_server*
+* *server_repl_password*: password de sincronización
+* *tmpdir dir*: directorio usado como tmpfs para mysql
+* *tmpdir size*: cantidad de memoria usada para tmpfs
+* *socket_file*: nombre del socket con el que correrá mysql. Se setea en el
+  valor por defecto en ubuntu
+* *mysql_tuning tuning.cnf*: permite sobreescribir cualquier atributo de tuning
+  utilizando las secciones como claves y alguna opción válida de my.cnf
+* *mysql server_root_password*: password de root de mysql. Utilizado por
+  compatibilidad con mysql < 6.0.0. Muchas recetas se basan en este atributo. Por 
+  ello lo seteamos cuando se setea la password de root de mysql
+
+## Uso
+
+### mo_mysql::master
+
+Instala el master de un cluster. Requiere de un databag para poder configurarse
+
+### mo_mysql::slave
+
+Instala el slave de un cluster. Requiere de un databag para poder configurarse
+
+### mo_mysql::standalone-server
+
+Instala un servidor de mysql básico sin tuning, tmpfs, ni binary logs. Sirve
+para tests de recetas que requieran un server de mysql
+
 
 ## Contributing
 
@@ -46,6 +96,7 @@ Include `mo_mysql` in your node's `run_list`:
 5. Run the tests, ensuring they all pass
 6. Submit a Pull Request
 
-## License and Authors
+## Autores
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Christian A. Rodriguez (<chrodriguez@gmail.com>)
+Author:: Leandro Di Tommaso (<leandro.ditommaso@mikroways.net>)

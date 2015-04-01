@@ -12,3 +12,7 @@ node.set['mo_mysql']['socket_file']             = "/var/run/mysqld-#{node['mysql
 mysql2_chef_gem 'default' do
   action :install
 end
+
+mysql_client 'default' do
+    action :create
+end

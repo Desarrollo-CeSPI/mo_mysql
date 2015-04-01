@@ -27,10 +27,6 @@ mount node['mo_mysql']['tmpdir']['dir'] do
   action   [:mount, :enable]
 end
 
-
-
-
 mysqlm_dot_my_cnf 'root' do
-  cookbook node['mysql-multi']['templates']['my.cnf']['cookbook']
   passwd node['mysql-multi']['server_root_password']
 end
