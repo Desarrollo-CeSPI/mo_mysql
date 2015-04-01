@@ -1,4 +1,4 @@
-# mo_mysql-cookbook
+# Cookbook mo_mysql
 
 Instala un servidor de Mysql master, slave o standalone. Cuando se utiliza
 master/slave se llamará cluster al grupo de un master con N slaves
