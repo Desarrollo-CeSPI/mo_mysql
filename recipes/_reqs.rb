@@ -9,6 +9,8 @@ node.set['mysql-multi']['install_recipe']       = node['mo_mysql']['install_reci
 node.set['mysql-multi']['templates']['my.cnf']['cookbook'] = 'mo_mysql'
 node.set['mo_mysql']['socket_file']             = "/var/run/mysqld-#{node['mysql-multi']['service_name']}/mysqld.sock"
 
+include_recipe 'build-essential::default'
+
 mysql2_chef_gem 'default' do
   action :install
 end
