@@ -7,7 +7,6 @@ node.set['mysql-multi']['slave_user']           = data['slave_user'] if data['sl
 node.set['mysql-multi']['server_repl_password'] = data['server_repl_password'] if data['server_repl_password']
 node.set['mysql-multi']['install_recipe']       = node['mo_mysql']['install_recipe']
 node.set['mysql-multi']['templates']['my.cnf']['cookbook'] = 'mo_mysql'
-node.set['mo_mysql']['socket_file']             = "/var/run/mysqld-#{node['mysql-multi']['service_name']}/mysqld.sock"
 
 include_recipe 'build-essential::default'
 
