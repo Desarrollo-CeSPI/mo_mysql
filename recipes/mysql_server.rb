@@ -18,6 +18,7 @@ end
 
 mysql_tuning node['mysql-multi']['service_name'] do
   include_dir "/etc/mysql-#{node['mysql-multi']['service_name']}/conf.d"
+  notifies :restart, "mysql_service[#{node['mysql-multi']['service_name']}]"
 end
 
 if node['platform'] == 'ubuntu'
