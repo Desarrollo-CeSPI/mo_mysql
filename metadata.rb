@@ -4,7 +4,7 @@ maintainer_email 'chrodriguez@gmail.com leandro.ditommaso@mikroways.net'
 license          'MIT'
 description      'Installs/Configures mo_mysql'
 long_description 'Installs/Configures mo_mysql'
-version          '1.0.0'
+version          '1.1.0'
 
 depends 'mysql-multi',         '~> 2.1.2'
 depends 'mysql',               '~> 6.0.0'

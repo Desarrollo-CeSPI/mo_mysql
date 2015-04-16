@@ -49,6 +49,14 @@ mysql_config 'tmpfs' do
 end
 
 
+mysql_config 'charset' do
+  source 'charset.cnf.erb'
+  instance node['mysql-multi']['service_name']
+  variables(:charset => node['mo_mysql']['encoding']['charset'],
+            :collation => node['mo_mysql']['encoding']['collation'])
+  notifies :restart, "mysql_service[#{node['mysql-multi']['service_name']}]"
+end
+
 mysqlm_dot_my_cnf 'root' do
   passwd node['mysql-multi']['server_root_password']
 end
