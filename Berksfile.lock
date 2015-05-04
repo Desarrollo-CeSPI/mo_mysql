@@ -45,7 +45,7 @@ GRAPH
   rbac (1.0.3)
   smf (2.2.6)
     rbac (>= 1.0.1)
-  yum (3.5.4)
+  yum (3.6.0)
   yum-epel (0.6.0)
     yum (~> 3.0)
   yum-mysql-community (0.1.17)
