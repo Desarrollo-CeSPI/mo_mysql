@@ -16,3 +16,8 @@ default['mysql']['server_root_password'] = 'change-me'
 # Define encoding.
 default['mo_mysql']['encoding']['charset'] = 'utf8'
 default['mo_mysql']['encoding']['collation'] = 'utf8_general_ci'
+
+# Slow log query dump
+default['mo_mysql']['slowquery_analysis']['enabled'] = false
+default['mo_mysql']['slowquery_analysis']['mail_to'] = 'root'
+default['mo_mysql']['slowquery_analysis']['mail_subject'] = "Slow queries at #{node.fqdn}"
